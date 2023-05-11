@@ -59,17 +59,17 @@ body {
 	grid-template-columns: repeat(var(--cols), 1fr);
 	grid-template-rows: repeat(var(--rows), 1fr);
 	aspect-ratio: var(--cols) / var(--rows);
-	background-color: #d79a10;
+	background-color: #ebc5a7;
 	background: radial-gradient(
 		circle,
 		transparent,
 		transparent 50%,
-		#d79a10 51%,
-		#d79a10 60%,
-		#ad7e0f 90%
+		#ebc5a7 51%,
+		#ebc5a7 60%,
+		#c3a38b 90%
 	);
 	background-size: calc(100% / var(--cols)) calc(100% / var(--rows));
-	border: 15px solid #ad7e0f;
+	border: 15px solid #c3a38b;
 	align-items: center;
 	justify-content: center;
 }
