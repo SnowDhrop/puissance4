@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { CellState, GridState, PlayerColor } from "../../types";
 
 type GridProps = {
@@ -6,7 +7,12 @@ type GridProps = {
 
 export function Grid({ grid }: GridProps) {
 	return (
-		<div className='grid'>
+		<div
+			className='grid'
+			style={
+				{ "--rows": grid.length, "--cols": grid[0].length } as CSSProperties
+			}
+		>
 			{grid.map((row, y) =>
 				row.map((c, x) => <Cell x={x} y={y} color={c} key={`${x}-${y}`} />)
 			)}
