@@ -1,4 +1,9 @@
-import { currentPlayer, freePositionY, winningPositions } from "../func/game";
+import {
+	countEmptyCells,
+	currentPlayer,
+	freePositionY,
+	winningPositions,
+} from "../func/game";
 import { PlayerColor, GameGuard } from "../types";
 
 export const canJoinGuard: GameGuard<"join"> = (context, event) => {
@@ -20,6 +25,12 @@ export const canChooseColorGuard: GameGuard<"chooseColor"> = (
 		[PlayerColor.BLUE, PlayerColor.GREEN].includes(event.color) &&
 		context.players.find((p) => p.id === event.playerId) !== undefined && // Can be write like this: !!context.players.find((p) => p.id === event.playerId) &&
 		context.players.find((p) => p.color === event.color) === undefined
+	);
+};
+
+export const isDrawMoveGuard: GameGuard<"dropToken"> = (context, event) => {
+	return (
+		canDropTokenGuard(context, event) && countEmptyCells(context.grid) <= 1
 	);
 };
 

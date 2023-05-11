@@ -61,3 +61,17 @@ export function currentPlayer(context: GameContext): Player {
 
 	return player;
 }
+
+export function countEmptyCells(grid: GridState): number {
+	let count = 0;
+
+	for (const row of grid) {
+		for (const cell of row) {
+			if (cell === "E") {
+				count++;
+			}
+		}
+	}
+
+	return count;
+}

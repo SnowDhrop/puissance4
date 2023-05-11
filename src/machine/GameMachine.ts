@@ -9,16 +9,22 @@ import {
 	Position,
 } from "../types";
 import {
+	canChooseColorGuard,
 	canDropTokenGuard,
 	canJoinGuard,
 	canLeaveGuard,
+	canStartGameGuard,
+	isDrawMoveGuard,
 	isWinningMoveGuard,
 } from "./guards";
 import {
+	chooseColorAction,
 	dropTokenAction,
 	joinGameAction,
 	leaveGameAction,
+	restartAction,
 	saveWinningPositions,
+	setCurrentPlayerAction,
 	switchPlayerAction,
 } from "./actions";
 
@@ -73,16 +79,31 @@ export const GameMachine = GameModel.createMachine({
 					target: GameStates.LOBBY,
 				},
 				chooseColor: {
+					cond: canChooseColorGuard,
 					target: GameStates.LOBBY,
+					actions: [GameModel.assign(chooseColorAction)],
 				},
 				start: {
+					cond: canStartGameGuard,
 					target: GameStates.PLAY,
+					actions: [GameModel.assign(setCurrentPlayerAction)],
 				},
 			},
 		},
 		[GameStates.PLAY]: {
+			after: {
+				20000: {
+					target: GameStates.PLAY,
+					actions: [GameModel.assign(switchPlayerAction)],
+				},
+			},
 			on: {
 				dropToken: [
+					{
+						cond: isDrawMoveGuard,
+						target: GameStates.DRAW,
+						actions: [GameModel.assign(dropTokenAction)],
+					},
 					{
 						cond: isWinningMoveGuard,
 						target: GameStates.VICTORY,
@@ -106,6 +127,7 @@ export const GameMachine = GameModel.createMachine({
 			on: {
 				restart: {
 					target: GameStates.LOBBY,
+					actions: [GameModel.assign(restartAction)],
 				},
 			},
 		},
@@ -113,6 +135,7 @@ export const GameMachine = GameModel.createMachine({
 			on: {
 				restart: {
 					target: GameStates.LOBBY,
+					actions: [GameModel.assign(restartAction)],
 				},
 			},
 		},

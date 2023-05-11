@@ -78,12 +78,27 @@ describe("machine/GameMachine", () => {
 			); // Drop a token at x=5, where the column have 3 tokens BLUE
 
 			expect(machine.state.value).toBe(GameStates.VICTORY);
-
-			console.log(
-				machine.state.context.winningPositions,
-				machine.state.context.grid
-			);
 			expect(machine.state.context.winningPositions).toHaveLength(4);
+		});
+
+		it("should handle draw", () => {
+			machine = makeGame(GameStates.PLAY, {
+				...machine.state.context,
+				grid: [
+					["E", "G", "G", "G", "G", "G", "G"],
+					["G", "G", "G", "G", "G", "G", "G"],
+					["G", "G", "G", "G", "G", "G", "G"],
+					["G", "G", "G", "G", "G", "G", "G"],
+					["G", "G", "G", "G", "G", "G", "G"],
+					["G", "G", "G", "G", "G", "G", "G"],
+				],
+			});
+
+			expect(machine.send(GameModel.events.dropToken("1", 0)).changed).toBe(
+				true
+			);
+
+			expect(machine.state.value).toBe(GameStates.DRAW);
 		});
 	});
 });
