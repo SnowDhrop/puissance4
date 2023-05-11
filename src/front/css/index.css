@@ -1,0 +1,55 @@
+html,
+body {
+	font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+		"Lucida Sans", Arial, sans-serif;
+}
+
+.container {
+	width: fit-content;
+	margin: 0 auto;
+}
+
+.players {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.player {
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+}
+
+.disc {
+	background-color: #367f9b;
+	/*background-color: #d79a10; /* Couleur du jeu */
+
+	box-shadow: inset 0 0 0 3px #24586c;
+	border: solid 4px #367f9b;
+	outline: solid 1px #24586c;
+	width: 25px;
+	height: 25px;
+	border-radius: 100%;
+}
+
+.disc-green {
+	background-color: #7be0a6;
+
+	/*background-color: #d79a10; /* Couleur du jeu */
+
+	box-shadow: inset 0 0 0 3px #51936e;
+	border: solid 4px #7be0a6;
+	outline: solid 1px #51936e;
+}
+
+.selector {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.selector .disc {
+	margin: 0px 15px;
+	margin-bottom: 15px;
+	transform: scale(2);
+}
