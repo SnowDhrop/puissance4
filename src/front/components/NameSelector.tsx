@@ -2,7 +2,7 @@ import { useState, FormEvent } from "react";
 
 type NameSelectorProps = {
 	onSelect: (name: string) => void;
-	disabled: boolean;
+	disabled?: boolean;
 };
 
 export function NameSelector({ onSelect, disabled }: NameSelectorProps) {
@@ -32,11 +32,18 @@ export function NameSelector({ onSelect, disabled }: NameSelectorProps) {
 					</button>
 				</div>
 			)}
-			<form action='' onSubmit={handleSubmit}>
+			<form
+				className='flex'
+				style={{ gap: "0.5rem" }}
+				action=''
+				onSubmit={handleSubmit}
+			>
 				<label htmlFor='name'>Your pseudo</label>
 				<input disabled={disabled} type='text' id='name' name='name' required />
 
-				<button disabled={disabled}>Choisir</button>
+				<button className='button' disabled={disabled}>
+					Choose
+				</button>
 			</form>
 		</>
 	);

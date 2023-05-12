@@ -1,12 +1,12 @@
 import { discColorClass } from "../../func/color";
 import { PlayerColor } from "../../types";
 
-type PlayScreenProps = {
+type GameInfoProps = {
 	color: PlayerColor;
 	name: string;
 };
 
-export function PlayScreen({ color, name }: PlayScreenProps) {
+export function GameInfo({ color, name }: GameInfoProps) {
 	return (
 		<div>
 			<h2 className='flex' style={{ gap: ".6rem" }}>

@@ -1,30 +1,17 @@
-import { NameSelector } from "./screen/NameSelector";
+import { NameSelector } from "./components/NameSelector";
 import "./css/index.css";
-import { ColorSelector } from "./screen/ColorSelector";
+import { ColorSelector } from "./components/ColorSelector";
 import { PlayerColor } from "../types";
 import { Grid } from "./components/Grid";
-import { PlayScreen } from "./screen/PlayScreen";
+import { GameInfo } from "./components/GameInfo";
+import { Victory } from "./components/Victory";
 
 function App() {
 	return (
 		<div className='container'>
-			<PlayScreen color={PlayerColor.BLUE} name='Yolo' />
-			{/* <VictoryScreen color={PlayerColor.BLUE} name='Yolo' /> */}
+			<NameSelector onSelect={() => null} />
+			<hr />
 
-			<Grid
-				color={PlayerColor.BLUE}
-				grid={[
-					["E", "E", "E", "E", "E", "E", "B"],
-					["E", "E", "E", "E", "E", "B", "G"],
-					["E", "E", "E", "E", "E", "B", "B"],
-					["E", "E", "E", "E", "E", "B", "G"],
-					["G", "G", "G", "G", "G", "G", "B"],
-					["G", "G", "G", "G", "G", "G", "G"],
-				]}
-			/>
-			<hr />
-			<NameSelector onSelect={() => null} disabled />
-			<hr />
 			<ColorSelector
 				onSelect={() => null}
 				players={[
@@ -40,6 +27,23 @@ function App() {
 					},
 				]}
 				colors={[PlayerColor.BLUE, PlayerColor.GREEN]}
+			/>
+			<hr />
+
+			<GameInfo color={PlayerColor.BLUE} name='Yolo' />
+			<Victory color={PlayerColor.BLUE} name='Yolo' />
+
+			<Grid
+				onDrop={() => null}
+				color={PlayerColor.BLUE}
+				grid={[
+					["E", "E", "E", "E", "E", "E", "B"],
+					["E", "E", "E", "E", "E", "B", "G"],
+					["E", "E", "E", "E", "E", "B", "B"],
+					["E", "E", "E", "E", "E", "B", "G"],
+					["G", "G", "G", "G", "G", "G", "B"],
+					["G", "G", "G", "G", "G", "G", "G"],
+				]}
 			/>
 			<hr />
 		</div>
