@@ -2,19 +2,24 @@ import { NameSelector } from "./screen/NameSelector";
 import "./css/index.css";
 import { ColorSelector } from "./screen/ColorSelector";
 import { PlayerColor } from "../types";
-import { Grid } from "./screen/Grid";
+import { Grid } from "./components/Grid";
+import { PlayScreen } from "./screen/PlayScreen";
 
 function App() {
 	return (
 		<div className='container'>
+			<PlayScreen color={PlayerColor.BLUE} name='Yolo' />
+			{/* <VictoryScreen color={PlayerColor.BLUE} name='Yolo' /> */}
+
 			<Grid
+				color={PlayerColor.BLUE}
 				grid={[
 					["E", "E", "E", "E", "E", "E", "B"],
 					["E", "E", "E", "E", "E", "B", "G"],
 					["E", "E", "E", "E", "E", "B", "B"],
 					["E", "E", "E", "E", "E", "B", "G"],
-					["E", "E", "E", "E", "E", "G", "B"],
-					["E", "E", "E", "E", "E", "G", "G"],
+					["G", "G", "G", "G", "G", "G", "B"],
+					["G", "G", "G", "G", "G", "G", "G"],
 				]}
 			/>
 			<hr />
