@@ -125,6 +125,10 @@ input:disabled {
 	height: auto;
 }
 
+.disc-active {
+	border: 8px solid #fff;
+}
+
 .grid .disc-blue,
 .grid .disc-green {
 	animation: Drop calc(0.2s * var(--row)) both;

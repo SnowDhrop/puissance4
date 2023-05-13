@@ -34,7 +34,12 @@ function App() {
 			{state === GameStates.VICTORY && <VictoryScreen />}
 			{state === GameStates.DRAW && <DrawScreen />}
 
-			<Grid grid={context.grid} onDrop={dropToken} color={player?.color} />
+			<Grid
+				grid={context.grid}
+				onDrop={dropToken}
+				color={player?.color}
+				winningPositions={context.winningPositions}
+			/>
 		</div>
 	);
 }

@@ -7,7 +7,12 @@ import {
 	GameStates,
 	Player,
 } from "../../types";
-import { createContext, PropsWithChildren, useContext } from "react";
+import {
+	createContext,
+	PropsWithChildren,
+	useCallback,
+	useContext,
+} from "react";
 
 type GameContextType = {
 	state: GameStates;
@@ -31,6 +36,17 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 	const [state, send] = useMachine(GameMachine);
 
 	const playerId = state.context.currentPlayer ?? "";
+	const sendWithPlayers = useCallback<GameContextType["send"]>(
+		(event) => send({ playerId, ...event } as GameEvents),
+		[playerId]
+	);
+
+	const can = useCallback<GameContextType["can"]>(
+		(event) =>
+			!!GameMachine.transition(state, { playerId, ...event } as GameEvents)
+				.changed,
+		[state, playerId]
+	);
 
 	return (
 		<Context.Provider
@@ -38,10 +54,8 @@ export function GameContextProvider({ children }: PropsWithChildren) {
 				playerId,
 				state: state.value as GameStates,
 				context: state.context,
-				send: (event) => send({ playerId, ...event } as GameEvents),
-				can: (event) =>
-					!!GameMachine.transition(state, { playerId, ...event } as GameEvents)
-						.changed,
+				send: sendWithPlayers,
+				can: can,
 			}}
 		>
 			{children}

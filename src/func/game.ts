@@ -34,7 +34,7 @@ export function winningPositions(
 		for (const forward of [1, -1]) {
 			for (let i = 1; i < size; i++) {
 				const x = position.x + direction[0] * i * forward;
-				const y = position.y + direction[1] * i;
+				const y = position.y + direction[1] * i * forward;
 
 				if (grid?.[y]?.[x] !== color) {
 					break;
