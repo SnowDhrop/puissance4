@@ -123,6 +123,10 @@ input:disabled {
 	width: 75%;
 	aspect-ratio: 1/1;
 	height: auto;
+}
+
+.grid .disc-blue,
+.grid .disc-green {
 	animation: Drop calc(0.2s * var(--row)) both;
 }
 
@@ -166,6 +170,10 @@ input:disabled {
 	border-radius: 15px;
 	color: #fff;
 	line-height: 1;
+}
+
+.button:disabled {
+	opacity: 0.5;
 }
 
 .button:hover {

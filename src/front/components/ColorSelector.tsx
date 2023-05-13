@@ -17,10 +17,8 @@ export function ColorSelector({
 			<div className='players'>
 				{players.map((player) => (
 					<div className='player' key={player.id}>
-						{player.name}{" "}
-						{player.color && (
-							<div className={discColorClass(player.color)} key={player.id} />
-						)}
+						{player.name}
+						{player.color && <div className={discColorClass(player.color)} />}
 					</div>
 				))}
 			</div>
@@ -28,11 +26,9 @@ export function ColorSelector({
 			<h3>Choose a color</h3>
 			<div className='selector'>
 				{colors.map((color) => (
-					<button
-						className={discColorClass(color)}
-						key={color}
-						onClick={() => onSelect(color)}
-					></button>
+					<button key={color} onClick={() => onSelect(color)}>
+						<div className={discColorClass(color)}></div>
+					</button>
 				))}
 			</div>
 		</>
