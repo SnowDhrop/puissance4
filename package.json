@@ -1,32 +1,48 @@
 {
-  "name": "puissance4",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "test": "vitest"
-  },
-  "dependencies": {
-    "@xstate/react": "^3.2.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "xstate": "^4.37.2"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "@vitejs/plugin-react": "^4.0.0",
-    "eslint": "^8.38.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.2",
-    "vitest": "^0.31.0"
-  }
+	"name": "puissance4",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"start": "tsx src/server/server.ts",
+		"start:watch": "nodemon src/server/server.ts",
+		"gen:key": "tsx src/commands/genkey.ts",
+		"build": "tsc && vite build",
+		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+		"preview": "vite preview",
+		"test": "vitest"
+	},
+	"dependencies": {
+		"@fastify/static": "^6.10.1",
+		"@fastify/websocket": "^8.0.0",
+		"@xstate/react": "^3.2.2",
+		"fastify": "^4.17.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"tsx": "^3.12.7",
+		"uuid": "^9.0.0",
+		"xstate": "^4.37.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20.1.7",
+		"@types/react": "^18.0.28",
+		"@types/react-dom": "^18.0.11",
+		"@types/uuid": "^9.0.1",
+		"@types/ws": "^8.5.4",
+		"@typescript-eslint/eslint-plugin": "^5.57.1",
+		"@typescript-eslint/parser": "^5.57.1",
+		"@vitejs/plugin-react": "^4.0.0",
+		"eslint": "^8.38.0",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-react-refresh": "^0.3.4",
+		"nodemon": "^2.0.22",
+		"typescript": "^5.0.2",
+		"vite": "^4.3.2",
+		"vitest": "^0.31.0"
+	},
+	"nodemonConfig": {
+		"exec": "tsx",
+		"ext": "ts, tsx"
+	}
 }

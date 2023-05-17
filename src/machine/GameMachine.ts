@@ -63,23 +63,8 @@ export const GameModel = createModel(
 
 export const GameMachine = GameModel.createMachine({
 	id: "game",
-	initial: GameStates.PLAY,
-	context: {
-		...GameModel.initialContext,
-		players: [
-			{
-				id: "Pif",
-				name: "Pif",
-				color: PlayerColor.BLUE,
-			},
-			{
-				id: "Paf",
-				name: "Paf",
-				color: PlayerColor.GREEN,
-			},
-		],
-		currentPlayer: "Pif",
-	},
+	context: GameModel.initialContext,
+	initial: GameStates.LOBBY,
 	states: {
 		[GameStates.LOBBY]: {
 			on: {

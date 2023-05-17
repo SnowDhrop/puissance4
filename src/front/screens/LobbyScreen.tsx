@@ -27,8 +27,6 @@ export function LobbyScreen() {
 
 	return (
 		<div>
-			<NameSelector onSelect={joinGame} />
-
 			<ColorSelector
 				onSelect={chooseColor}
 				players={context.players}

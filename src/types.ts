@@ -1,6 +1,10 @@
 import { ContextFrom, EventFrom } from "xstate";
 import { GameModel } from "./machine/GameMachine";
 
+export enum ServerErrors {
+	AuthError,
+}
+
 export enum GameStates {
 	LOBBY = "LOBBY",
 	PLAY = "PLAY",
@@ -22,6 +26,12 @@ export type Player = {
 	id: string;
 	name: string;
 	color?: PlayerColor;
+};
+
+export type PlayerSession = {
+	id: string;
+	name: string;
+	signature: string;
 };
 
 export type CellEmpty = "E";
