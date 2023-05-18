@@ -1,6 +1,7 @@
 import { Interpreter, InterpreterFrom, interpret } from "xstate";
 import { GameMachine } from "../../machine/GameMachine";
 import { ConnectionRepository } from "./ConnectionRepository";
+import { publishMachineToPlayers } from "../func/socket";
 
 type Machine = InterpreterFrom<typeof GameMachine>;
 
@@ -14,7 +15,7 @@ export class GameRepository {
 		const game = interpret(GameMachine)
 			.onTransition((state) => {
 				if (state.changed) {
-					// TODO: Envoyer l'infos aux joueurs
+					publishMachineToPlayers(state, this.connections, id);
 				}
 			})
 			.start();

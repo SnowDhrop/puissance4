@@ -28,8 +28,8 @@ function App() {
 		if (playerId) {
 			const searchParams = new URLSearchParams({
 				id: playerId,
-				signature: getSession()?.signature!,
-				name: "John",
+				signature: getSession()!.signature!,
+				name: getSession()!.name!,
 				gameId: "test",
 			});
 
