@@ -42,6 +42,7 @@ function App() {
 					canDrop={(x) => can({ type: "dropToken", x })}
 				/>
 			)}
+			<p>Build with love by Nathan</p>
 		</div>
 	);
 }
