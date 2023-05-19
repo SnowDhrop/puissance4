@@ -42,6 +42,7 @@ export const canDropTokenGuard: GameGuard<"dropToken"> = (context, event) => {
 	return (
 		event.x < context.grid[0].length &&
 		event.x >= 0 &&
+		context.currentPlayer === event.playerId &&
 		freePositionY(context.grid, event.x) >= 0
 	);
 };

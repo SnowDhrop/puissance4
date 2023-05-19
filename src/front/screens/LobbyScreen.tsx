@@ -11,14 +11,10 @@ export function LobbyScreen() {
 
 	const colors = [PlayerColor.BLUE, PlayerColor.GREEN];
 
-	const joinGame = (name: string) =>
-		send({ type: "join", name: name, playerId: name });
-
 	const chooseColor = (color: PlayerColor) =>
 		send({
 			type: "chooseColor",
 			color,
-			playerId: color === PlayerColor.BLUE ? "Pif" : "Paf",
 		});
 
 	const startGame = () => send({ type: "start" });
