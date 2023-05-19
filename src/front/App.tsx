@@ -29,7 +29,6 @@ function App() {
 
 	return (
 		<div className='container'>
-			Les Arditti sont les meilleurs ! 🐱‍🏍
 			{state === GameStates.LOBBY && <LobbyScreen />}
 			{state === GameStates.PLAY && <PlayScreen />}
 			{state === GameStates.VICTORY && <VictoryScreen />}

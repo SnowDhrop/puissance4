@@ -20,6 +20,7 @@ export function LobbyScreen() {
 
 	return (
 		<div>
+			<p>To play with another personn, just send them the url of the page</p>
 			<ColorSelector
 				onSelect={chooseColor}
 				players={context.players}
