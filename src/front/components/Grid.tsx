@@ -21,7 +21,7 @@ export function Grid({
 	const cols = grid[0].length;
 	const showColumns = color && onDrop;
 	const isWinning = (x: number, y: number) =>
-		winningPositions.find((p) => p.x === x && p.y === y);
+		!!winningPositions.find((p) => p.x === x && p.y === y);
 
 	return (
 		<div
@@ -64,7 +64,7 @@ type CellProps = {
 	active: boolean;
 };
 
-function Cell({ x, y, color, active }: CellProps) {
+function Cell({ y, color, active }: CellProps) {
 	return (
 		<div
 			style={{ "--row": y } as CSSProperties}

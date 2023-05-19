@@ -1,10 +1,7 @@
 import { prevent } from "../../func/dom";
 import { PlayerColor } from "../../types";
 import { ColorSelector } from "../components/ColorSelector";
-import { NameSelector } from "../components/NameSelector";
 import { useGame } from "../hooks/useGame";
-
-// type LobbyScreenProps = {};
 
 export function LobbyScreen() {
 	const { send, context, can } = useGame();

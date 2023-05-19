@@ -5,8 +5,8 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"start": "tsx src/server/server.ts",
-		"start:watch": "nodemon src/server/server.ts",
+		"start": "cross-env NODE_ENV=prod tsx src/server/server.ts",
+		"start:watch": "cross-env NODE_ENV=dev nodemon src/server/server.ts",
 		"gen:key": "tsx src/commands/genkey.ts",
 		"build": "tsc && vite build",
 		"lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -15,8 +15,11 @@
 	},
 	"dependencies": {
 		"@fastify/static": "^6.10.1",
+		"@fastify/view": "^7.4.1",
 		"@fastify/websocket": "^8.0.0",
 		"@xstate/react": "^3.2.2",
+		"cross-env": "^7.0.3",
+		"ejs": "^3.1.9",
 		"fastify": "^4.17.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
@@ -26,6 +29,7 @@
 		"xstate": "^4.37.2"
 	},
 	"devDependencies": {
+		"@types/ejs": "^3.1.2",
 		"@types/node": "^20.1.7",
 		"@types/react": "^18.0.28",
 		"@types/react-dom": "^18.0.11",

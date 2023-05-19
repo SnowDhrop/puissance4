@@ -1,4 +1,4 @@
-import { Interpreter, InterpreterFrom, interpret } from "xstate";
+import { InterpreterFrom, interpret } from "xstate";
 import { GameMachine } from "../../machine/GameMachine";
 import { ConnectionRepository } from "./ConnectionRepository";
 import { publishMachineToPlayers } from "../func/socket";

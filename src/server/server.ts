@@ -1,27 +1,42 @@
 import Fastify from "fastify";
 import FastifyStatic from "@fastify/static";
+import FastifyWebsocket from "@fastify/websocket";
 import { v4 } from "uuid";
 import { sign, verify } from "./func/crypto";
 import { resolve } from "path";
-import fastifyWebsocket from "@fastify/websocket";
 import { ServerErrors } from "../types";
 import { ConnectionRepository } from "./repositories/ConnectionRepository";
 import { GameRepository } from "./repositories/GameRepository";
 import { GameModel } from "../machine/GameMachine";
 import { publishMachine } from "./func/socket";
+import { readFileSync } from "fs";
+import FastifyView from "@fastify/view";
+import ejs from "ejs";
 
 const connections = new ConnectionRepository();
-
 const games = new GameRepository(connections);
+const env = process.env.NODE_ENV as "dev" | "prod";
+let manifest = {};
+
+try {
+	const manifestData = readFileSync("./public/assets/manifest.json");
+	manifest = JSON.parse(manifestData.toLocaleString());
+} catch (e) {}
 
 const fastify = Fastify({ logger: true });
+
+fastify.register(FastifyView, {
+	engine: {
+		ejs: ejs,
+	},
+});
 
 //Fichier que doit ouvrir le serveur
 fastify.register(FastifyStatic, {
 	root: resolve("./public"),
 });
 
-fastify.register(fastifyWebsocket);
+fastify.register(FastifyWebsocket);
 
 //Route des sockets
 fastify.register(async (f) => {
@@ -59,14 +74,9 @@ fastify.register(async (f) => {
 
 		publishMachine(game.state, connection); // Dès qu'un joueur rejoint je lui renvoie la machine
 
-		// connection.socket.send(
-		// 	JSON.stringify({
-		// 		type: "gameUpdate",
-		// 	})
-		// );
-
 		// Dès que je rejoins un message du client, je les transmets à la machine s'ils sont du type "gameUpdate"
-		connection.socket.on("message", (rawMessage: any) => {
+		// @ts-ignore
+		connection.socket.on("message", (rawMessage) => {
 			const message = JSON.parse(rawMessage.toLocaleString());
 
 			if (message.type === "gameUpdate") {
@@ -74,6 +84,7 @@ fastify.register(async (f) => {
 			}
 		});
 
+		// @ts-ignore
 		connection.socket.on("close", () => {
 			connections.remove(playerId, gameId);
 			game.send(GameModel.events.leave(playerId));
@@ -100,9 +111,12 @@ fastify.register(async (f) => {
 	});
 });
 
-fastify.post("/api/players", (req, res) => {
+fastify.get("/", (req, res) => {
+	res.view("/templates/index.ejs", { manifest, env: process.env.NODE_ENV });
+});
+
+fastify.post("/api/players", (_, res) => {
 	const playerId = v4();
-	const signature = sign(playerId);
 
 	res.send({
 		id: playerId,
