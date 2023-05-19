@@ -23,6 +23,7 @@ function App() {
 		return (
 			<div className='container'>
 				<LoginScreen />
+				<p>Build with love by Nathan Arditti</p>
 			</div>
 		);
 	}
