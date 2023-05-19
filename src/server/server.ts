@@ -15,7 +15,6 @@ import ejs from "ejs";
 
 const connections = new ConnectionRepository();
 const games = new GameRepository(connections);
-const env = process.env.NODE_ENV as "dev" | "prod";
 let manifest = {};
 
 try {
@@ -111,7 +110,7 @@ fastify.register(async (f) => {
 	});
 });
 
-fastify.get("/", (req, res) => {
+fastify.get("/", (_, res) => {
 	res.view("/templates/index.ejs", { manifest, env: process.env.NODE_ENV });
 });
 
