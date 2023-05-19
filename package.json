@@ -26,7 +26,8 @@
 		"reconnecting-websocket": "^4.4.0",
 		"tsx": "^3.12.7",
 		"uuid": "^9.0.0",
-		"xstate": "^4.37.2"
+		"xstate": "^4.37.2",
+		"typescript": "^5.0.2"
 	},
 	"devDependencies": {
 		"@types/ejs": "^3.1.2",
@@ -42,7 +43,6 @@
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-react-refresh": "^0.3.4",
 		"nodemon": "^2.0.22",
-		"typescript": "^5.0.2",
 		"vite": "^4.3.2",
 		"vitest": "^0.31.0"
 	},
