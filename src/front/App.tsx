@@ -43,7 +43,7 @@ function App() {
 					canDrop={(x) => can({ type: "dropToken", x })}
 				/>
 			)}
-			<p style={{ marginTop: "300px" }}>Build with love by Nathan Arditti</p>
+			<p style={{ marginTop: "50px" }}>Build with love by Nathan Arditti</p>
 		</div>
 	);
 }
