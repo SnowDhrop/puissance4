@@ -14,7 +14,7 @@ export function ColorSelector({
 }: ColorSelectorProps) {
 	return (
 		<>
-			<div className='players' style={{ marginTop: "150px" }}>
+			<div className='players' style={{ marginTop: "30px" }}>
 				{players.map((player) => (
 					<div className='player' key={player.id}>
 						{player.name}
